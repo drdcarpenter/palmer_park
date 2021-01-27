@@ -16,11 +16,14 @@ baseline <- function(metric){
     remove_empty(which = c("rows", "cols")) %>% 
     row_to_names(row_number = 2, remove_row = TRUE)
   
+  b$`Area (hectares)` <-  as.numeric(as.character(b$`Area (hectares)`))
+  b$`Total habitat units` <- as.numeric(as.character(b$`Total habitat units`))
+  
   return(b)
   
 }
 
-#baseline(m)
+b <- baseline(m)
 
 proposed <- function(metric){
   
@@ -31,8 +34,12 @@ proposed <- function(metric){
     rename(`Strategic Significance` = 6) %>% 
     slice(-1)
   
+  p$`Area (hectares)` <- as.numeric(as.character(p$`Area (hectares)`))
+  p$`Habitat units delivered` <- as.numeric(as.character(p$`Habitat units delivered`))
+  
   return(p)
   
 }
 
-#proposed(m)
+
+p <- proposed(m)
